@@ -651,8 +651,8 @@ copies of the Software...
 - 🌐 Website: [https://portfolio-liard-beta-93.vercel.app/](https://yourportfolio.com)
 - 💼 LinkedIn: [https://www.linkedin.com/in/krishna-prajapati-1651a93aa/](https://linkedin.com/in/yourusername)
 - 🐙 GitHub: [https://github.com/Prajapati-Krishna18](https://github.com/yourusername)
-- 🐦 Twitter: [@yourusername](https://twitter.com/yourusername)
-- 📧 Email: your.email@example.com
+- 🐦 Twitter: [https://x.com/KrishnaPra54873](https://twitter.com/yourusername)
+- 📧 Email: krishna.prajapati.rcg@gmail.com
 
 ---
 
