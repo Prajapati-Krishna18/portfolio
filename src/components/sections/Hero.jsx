@@ -80,7 +80,7 @@ export default function Hero() {
                             <a href="https://github.com/Prajapati-Krishna18" target="_blank" rel="noopener noreferrer" className="social-link">
                                 <FiGithub className="w-5 h-5" />
                             </a>
-                            <a href="https://www.linkedin.com/in/krishna-prajapati-1651a93aa/" target="_blank" rel="noopener noreferrer" className="social-link">
+                            <a href="https://www.linkedin.com/in/krishna-prajapati-45ba713ab/" target="_blank" rel="noopener noreferrer" className="social-link">
                                 <FiLinkedin className="w-5 h-5" />
                             </a>
                             <button

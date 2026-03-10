@@ -648,9 +648,9 @@ copies of the Software...
 
 **Your Name**
 
-- 🌐 Website: [yourportfolio.com](https://yourportfolio.com)
-- 💼 LinkedIn: [Your Name](https://linkedin.com/in/yourusername)
-- 🐙 GitHub: [@yourusername](https://github.com/yourusername)
+- 🌐 Website: [https://portfolio-liard-beta-93.vercel.app/](https://yourportfolio.com)
+- 💼 LinkedIn: [https://www.linkedin.com/in/krishna-prajapati-1651a93aa/](https://linkedin.com/in/yourusername)
+- 🐙 GitHub: [https://github.com/Prajapati-Krishna18](https://github.com/yourusername)
 - 🐦 Twitter: [@yourusername](https://twitter.com/yourusername)
 - 📧 Email: your.email@example.com
 

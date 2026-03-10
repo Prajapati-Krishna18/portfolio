@@ -2,7 +2,7 @@ import { FiGithub, FiLinkedin, FiTwitter, FiMail, FiHeart } from 'react-icons/fi
 
 const socialLinks = [
     { icon: FiGithub, href: 'https://github.com/Prajapati-Krishna18', label: 'GitHub' },
-    { icon: FiLinkedin, href: 'https://www.linkedin.com/in/krishna-prajapati-1651a93aa/', label: 'LinkedIn' },
+    { icon: FiLinkedin, href: 'https://www.linkedin.com/in/krishna-prajapati-45ba713ab/', label: 'LinkedIn' },
     { icon: FiTwitter, href: 'https://x.com/KrishnaPra54873', label: 'Twitter' },
     { icon: FiMail, href: 'krishna.prajapati.rcg@gmail.com', label: 'Email' },
 ];
