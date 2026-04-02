@@ -28,6 +28,14 @@ const certificates = [
         link: '/certificates/Dev Heat IIIT SURAT certificate.pdf',
         icon: '💻',
     },
+    {
+        title: 'HackCrux V2.0.0 — Participant',
+        issuer: 'HackCrux (The LNM Institute of Information Technology)',
+        date: 'Mar 2026',
+        credentialId: 'March 14th-15th, 2026 Participation',
+        link: '/certificates/LNMIIT_HackCrux.pdf',
+        icon: '💻',
+    }
 ];
 
 export default function Certificates() {
