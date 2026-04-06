@@ -106,19 +106,19 @@ export default function Contact() {
             <div className="absolute top-1/4 -left-32 w-64 h-64 bg-primary-500/10 rounded-full blur-3xl" />
             <div className="absolute bottom-1/4 -right-32 w-64 h-64 bg-accent-500/10 rounded-full blur-3xl" />
 
-            <div className="content-container relative z-10">
+            <div className="content-container relative z-10 w-full max-w-full">
                 <SectionHeading
                     title="Get In Touch"
                     subtitle="Have a project in mind? Let's work together!"
                 />
 
-                <div className="grid lg:grid-cols-5 gap-12 lg:gap-16 max-w-6xl mx-auto">
+                <div className="grid grid-cols-1 lg:grid-cols-5 gap-10 lg:gap-16 max-w-6xl mx-auto w-full max-w-full">
                     {/* Contact Info */}
                     <motion.div
-                        initial={{ opacity: 0, x: -30 }}
-                        whileInView={{ opacity: 1, x: 0 }}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="lg:col-span-2 space-y-6"
+                        className="lg:col-span-2 space-y-6 w-full max-w-full"
                     >
                         <h3 className="text-xl font-bold text-gray-200 mb-6">
                             Contact Information
@@ -130,23 +130,24 @@ export default function Contact() {
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
-                                className="glass-card p-5"
+                                className="glass-card p-5 w-full max-w-full overflow-hidden"
                             >
-                                <div className="flex items-center gap-4">
+                                <div className="flex items-center gap-4 w-full">
                                     <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary-500 to-accent-500 flex items-center justify-center flex-shrink-0">
                                         <info.icon className="w-5 h-5 text-white" />
                                     </div>
-                                    <div>
+                                    <div className="min-w-0 flex-1">
                                         <p className="text-sm text-gray-500 mb-1">{info.label}</p>
                                         {info.href ? (
                                             <a
                                                 href={info.href}
-                                                className="text-gray-200 hover:text-primary-400 transition-colors"
+                                                className="text-gray-200 hover:text-primary-400 transition-colors block truncate w-full"
+                                                title={info.value}
                                             >
                                                 {info.value}
                                             </a>
                                         ) : (
-                                            <p className="text-gray-200">{info.value}</p>
+                                            <p className="text-gray-200 truncate w-full" title={info.value}>{info.value}</p>
                                         )}
                                     </div>
                                 </div>
@@ -158,14 +159,14 @@ export default function Contact() {
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="glass-card p-5"
+                            className="glass-card p-5 w-full max-w-full"
                         >
                             <div className="flex items-center gap-3">
-                                <span className="relative flex h-3 w-3">
+                                <span className="relative flex h-3 w-3 flex-shrink-0">
                                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
                                     <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500" />
                                 </span>
-                                <p className="text-gray-300">
+                                <p className="text-gray-300 min-w-0">
                                     Available for freelance work
                                 </p>
                             </div>
@@ -174,12 +175,12 @@ export default function Contact() {
 
                     {/* Contact Form */}
                     <motion.div
-                        initial={{ opacity: 0, x: 30 }}
-                        whileInView={{ opacity: 1, x: 0 }}
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="lg:col-span-3"
+                        className="lg:col-span-3 w-full max-w-full"
                     >
-                        <form onSubmit={handleSubmit} className="glass-form p-8 md:p-10 lg:p-12">
+                        <form onSubmit={handleSubmit} className="glass-form p-6 sm:p-8 md:p-10 w-full max-w-full overflow-hidden">
                             <div className="space-y-6">
                                 <div className="grid md:grid-cols-2 gap-6">
                                     <Input
