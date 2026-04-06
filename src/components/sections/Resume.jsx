@@ -29,7 +29,7 @@ const experience = [
 
 const education = [
     {
-        title: 'Bachelor of Computer Science',
+        title: 'Bachelor of Computer Engineering',
         company: 'Swaminarayan University',
         location: 'Gandhinagar, Gujarat',
         period: '2025 - 2029',
