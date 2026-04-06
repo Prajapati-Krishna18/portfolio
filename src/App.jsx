@@ -12,7 +12,7 @@ import Contact from './components/sections/Contact';
 function App() {
   return (
     <ThemeProvider>
-      <div className="min-h-screen">
+      <div className="min-h-screen w-full max-w-full overflow-x-hidden relative">
         <Navbar />
         <main>
           <Hero />

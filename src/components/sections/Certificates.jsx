@@ -47,40 +47,37 @@ export default function Certificates() {
                     subtitle="Professional credentials and achievements"
                 />
 
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 w-full max-w-full">
                     {certificates.map((cert, index) => (
-                        <motion.div
-                            key={cert.title}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: index * 0.05 }}
-                        >
-                            <Card className="h-full flex flex-col">
+                        <div key={cert.title} className="w-full max-w-full">
+                            <Card 
+                                delay={index * 0.05} 
+                                className="h-full flex flex-col relative w-full overflow-hidden"
+                            >
+                                {/* Badge (Absolute Positioned) */}
+                                <div className="absolute top-6 right-6 w-10 h-10 rounded-lg bg-gradient-to-br from-primary-500 to-accent-500 flex items-center justify-center shadow-lg z-10">
+                                    <FiAward className="w-5 h-5 text-white" />
+                                </div>
+
                                 {/* Icon */}
-                                <div className="flex items-center justify-between mb-4">
-                                    <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-primary-500/20 to-accent-500/20 flex items-center justify-center text-3xl">
-                                        {cert.icon}
-                                    </div>
-                                    <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-primary-500 to-accent-500 flex items-center justify-center">
-                                        <FiAward className="w-5 h-5 text-white" />
-                                    </div>
+                                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-primary-500/20 to-accent-500/20 flex items-center justify-center text-3xl mb-4 relative z-10">
+                                    {cert.icon}
                                 </div>
 
                                 {/* Title & Issuer */}
-                                <h3 className="text-lg font-bold text-gray-200 mb-2">
+                                <h3 className="text-lg font-bold text-gray-200 mb-2 pr-12 relative z-10">
                                     {cert.title}
                                 </h3>
-                                <p className="text-primary-400 font-medium mb-3">
+                                <p className="text-primary-400 font-medium mb-3 relative z-10">
                                     {cert.issuer}
                                 </p>
 
                                 {/* Date & ID */}
-                                <div className="flex items-center gap-2 text-sm text-gray-500 mb-4">
-                                    <FiCalendar className="w-4 h-4" />
+                                <div className="flex flex-wrap items-center gap-2 text-sm text-gray-500 mb-4 relative z-10">
+                                    <FiCalendar className="w-4 h-4 flex-shrink-0" />
                                     <span>{cert.date}</span>
-                                    <span className="text-gray-600">•</span>
-                                    <span className="truncate">{cert.credentialId}</span>
+                                    <span className="text-gray-600 hidden sm:inline">•</span>
+                                    <span className="truncate w-full sm:w-auto block mt-1 sm:mt-0">{cert.credentialId}</span>
                                 </div>
 
                                 {/* View Link */}
@@ -88,13 +85,13 @@ export default function Certificates() {
                                     href={cert.link}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="mt-auto inline-flex items-center gap-2 text-sm text-gray-400 hover:text-primary-400 transition-colors pt-4 border-t border-white/5"
+                                    className="mt-auto inline-flex items-center gap-2 text-sm text-gray-400 hover:text-primary-400 transition-colors pt-4 border-t border-white/5 break-all sm:break-normal w-full relative z-10"
                                 >
-                                    <FiExternalLink className="w-4 h-4" />
-                                    View Credential
+                                    <FiExternalLink className="w-4 h-4 flex-shrink-0" />
+                                    <span className="truncate">View Credential</span>
                                 </a>
                             </Card>
-                        </motion.div>
+                        </div>
                     ))}
                 </div>
             </div>
