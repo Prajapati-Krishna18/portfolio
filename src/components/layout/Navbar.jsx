@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { FiMenu, FiX, FiSun, FiMoon } from 'react-icons/fi';
+import { motion } from 'framer-motion';
+import { FiMenu, FiSun, FiMoon } from 'react-icons/fi';
 import { useTheme } from '../../context/ThemeContext';
+import MobileDrawer from './MobileDrawer';
 
 const navItems = [
     { label: 'Home', href: '#home' },
@@ -9,6 +10,7 @@ const navItems = [
     { label: 'Projects', href: '#projects' },
     { label: 'Resume', href: '#resume' },
     { label: 'Certificates', href: '#certificates' },
+    { label: 'Testimonials', href: '#testimonials' },
     { label: 'Contact', href: '#contact' },
 ];
 
@@ -50,95 +52,81 @@ export default function Navbar() {
     };
 
     return (
-        <nav className={`navbar ${scrolled ? 'py-3' : 'py-4'} transition-all duration-300`}>
-            <div className="content-container">
-                <div className="flex items-center justify-between">
-                    {/* Logo */}
-                    <motion.a
-                        href="#home"
-                        onClick={(e) => handleNavClick(e, '#home')}
-                        className="text-xl font-bold text-gradient"
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                    >
-                        KP
-                    </motion.a>
-
-                    {/* Desktop Navigation */}
-                    <div className="hidden md:flex items-center gap-2">
-                        {navItems.map((item) => (
-                            <a
-                                key={item.href}
-                                href={item.href}
-                                onClick={(e) => handleNavClick(e, item.href)}
-                                className={`nav-link ${activeSection === item.href.substring(1) ? 'active' : ''}`}
-                            >
-                                {item.label}
-                            </a>
-                        ))}
-
-                        {/* Separator */}
-                        <div className="w-px h-6 bg-white/10 mx-3" />
-
-                        {/* Theme Toggle */}
-                        <motion.button
-                            onClick={toggleTheme}
-                            className="p-2 rounded-lg navbar-toggle-btn transition-all"
+        <>
+            <nav className={`navbar ${scrolled ? 'py-3' : 'py-4'} transition-all duration-300`}>
+                <div className="content-container">
+                    <div className="flex items-center justify-between">
+                        {/* Logo */}
+                        <motion.a
+                            href="#home"
+                            onClick={(e) => handleNavClick(e, '#home')}
+                            className="text-xl font-bold text-gradient"
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
-                            aria-label="Toggle theme"
                         >
-                            {isDark ? <FiSun className="w-5 h-5" /> : <FiMoon className="w-5 h-5" />}
-                        </motion.button>
-                    </div>
+                            KP
+                        </motion.a>
 
-                    {/* Mobile Menu Button */}
-                    <div className="flex items-center gap-3 md:hidden">
-                        <motion.button
-                            onClick={toggleTheme}
-                            className="p-2 rounded-lg navbar-toggle-btn"
-                            whileTap={{ scale: 0.95 }}
-                            aria-label="Toggle theme"
-                        >
-                            {isDark ? <FiSun className="w-5 h-5" /> : <FiMoon className="w-5 h-5" />}
-                        </motion.button>
+                        {/* Desktop Navigation */}
+                        <div className="hidden md:flex items-center gap-2">
+                            {navItems.map((item) => (
+                                <a
+                                    key={item.href}
+                                    href={item.href}
+                                    onClick={(e) => handleNavClick(e, item.href)}
+                                    className={`nav-link ${activeSection === item.href.substring(1) ? 'active' : ''}`}
+                                >
+                                    {item.label}
+                                </a>
+                            ))}
 
-                        <motion.button
-                            onClick={() => setIsOpen(!isOpen)}
-                            className="p-2 rounded-lg navbar-toggle-btn"
-                            whileTap={{ scale: 0.95 }}
-                            aria-label="Toggle menu"
-                        >
-                            {isOpen ? <FiX className="w-5 h-5" /> : <FiMenu className="w-5 h-5" />}
-                        </motion.button>
+                            {/* Separator */}
+                            <div className="w-px h-6 bg-white/10 mx-3" />
+
+                            {/* Theme Toggle */}
+                            <motion.button
+                                onClick={toggleTheme}
+                                className="p-2 rounded-lg navbar-toggle-btn transition-all"
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
+                                aria-label="Toggle theme"
+                            >
+                                {isDark ? <FiSun className="w-5 h-5" /> : <FiMoon className="w-5 h-5" />}
+                            </motion.button>
+                        </div>
+
+                        {/* Mobile Menu Button */}
+                        <div className="flex items-center gap-3 md:hidden">
+                            <motion.button
+                                onClick={toggleTheme}
+                                className="p-2 rounded-lg navbar-toggle-btn"
+                                whileTap={{ scale: 0.95 }}
+                                aria-label="Toggle theme"
+                            >
+                                {isDark ? <FiSun className="w-5 h-5" /> : <FiMoon className="w-5 h-5" />}
+                            </motion.button>
+
+                            <motion.button
+                                onClick={() => setIsOpen(true)}
+                                className="p-2 rounded-lg navbar-toggle-btn"
+                                whileTap={{ scale: 0.95 }}
+                                aria-label="Open navigation menu"
+                            >
+                                <FiMenu className="w-5 h-5" />
+                            </motion.button>
+                        </div>
                     </div>
                 </div>
+            </nav>
 
-                {/* Mobile Menu */}
-                <AnimatePresence>
-                    {isOpen && (
-                        <motion.div
-                            initial={{ opacity: 0, height: 0 }}
-                            animate={{ opacity: 1, height: 'auto' }}
-                            exit={{ opacity: 0, height: 0 }}
-                            className="md:hidden overflow-hidden"
-                        >
-                            <div className="pt-4 pb-2 flex flex-col gap-1">
-                                {navItems.map((item) => (
-                                    <a
-                                        key={item.href}
-                                        href={item.href}
-                                        onClick={(e) => handleNavClick(e, item.href)}
-                                        className={`nav-link py-3 ${activeSection === item.href.substring(1) ? 'active' : ''}`}
-                                    >
-                                        {item.label}
-                                    </a>
-                                ))}
-                            </div>
-                        </motion.div>
-                    )}
-                </AnimatePresence>
-            </div>
-        </nav>
+            {/* Mobile Drawer */}
+            <MobileDrawer
+                isOpen={isOpen}
+                onClose={() => setIsOpen(false)}
+                navItems={navItems}
+                activeSection={activeSection}
+                onNavClick={handleNavClick}
+            />
+        </>
     );
 }

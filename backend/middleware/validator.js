@@ -43,4 +43,37 @@ const validateContact = [
     }
 ];
 
-module.exports = { validateContact };
+const validateFeedback = [
+    body('name')
+        .optional()
+        .trim()
+        .isLength({ max: 100 }).withMessage('Name max 100 characters')
+        .customSanitizer(sanitize),
+
+    body('email')
+        .trim()
+        .notEmpty().withMessage('Email is required')
+        .isEmail().withMessage('Please enter a valid email address')
+        .normalizeEmail()
+        .customSanitizer(sanitize),
+
+    body('message')
+        .trim()
+        .notEmpty().withMessage('Message is required')
+        .isLength({ min: 5, max: 2000 }).withMessage('Message must be 5-2000 characters')
+        .customSanitizer(sanitize),
+
+    // Handle validation errors
+    (req, res, next) => {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({
+                success: false,
+                errors: errors.array().map(e => e.msg)
+            });
+        }
+        next();
+    }
+];
+
+module.exports = { validateContact, validateFeedback };

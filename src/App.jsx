@@ -4,6 +4,7 @@ import Footer from './components/layout/Footer';
 import Hero from './components/sections/Hero';
 import About from './components/sections/About';
 import Projects from './components/sections/Projects';
+import Testimonials from './components/sections/Testimonials';
 import Resume from './components/sections/Resume';
 import Certificates from './components/sections/Certificates';
 import Contact from './components/sections/Contact';
@@ -19,6 +20,7 @@ function App() {
           <Projects />
           <Resume />
           <Certificates />
+          <Testimonials />
           <Contact />
         </main>
         <Footer />

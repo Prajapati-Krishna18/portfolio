@@ -623,6 +623,24 @@ body.light-mode .download-toast[data-type='error'] {
   background: linear-gradient(180deg, #818cf8 0%, #a5b4fc 100%);
 }
 
+/* Thin scrollbar for content panels */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(99, 102, 241, 0.3);
+  border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(99, 102, 241, 0.5);
+}
+
 /* ===================================================================
    SELECTION STYLES
    =================================================================== */
@@ -925,4 +943,19 @@ body.light-mode .gradient-orb-1 {
 
 body.light-mode .gradient-orb-2 {
   background: rgba(244, 114, 182, 0.06);
+}
+
+/* ---------- Skills Cloud (Light Mode) ---------- */
+body.light-mode .skills-bubble {
+  border-color: rgba(0, 0, 0, 0.08);
+  background: rgba(255, 255, 255, 0.6);
+}
+
+body.light-mode .skills-bubble:hover {
+  border-color: rgba(79, 70, 229, 0.3);
+}
+
+/* ---------- Mobile Drawer (Light Mode) ---------- */
+body.light-mode .mobile-drawer-overlay {
+  background: rgba(0, 0, 0, 0.3);
 }

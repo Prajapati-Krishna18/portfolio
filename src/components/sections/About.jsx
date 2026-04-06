@@ -1,19 +1,8 @@
 import { motion } from 'framer-motion';
 import SectionHeading from '../ui/SectionHeading';
 import Card from '../ui/Card';
+import SkillsCloud from './SkillsCloud';
 import { FiCode, FiDatabase, FiLayers, FiSmartphone } from 'react-icons/fi';
-
-const skills = [
-    'JavaScript','React','Node.js','Tailwind CSS','MongoDB', 'Git' , 'C++',
-    'Postman' , 'Netlify' , 'Render'
-];
-
-const stats = [
-    { value: '15+', label: 'Projects Completed' },
-    { value: '1+', label: 'Years Experience' },
-    { value: '10+', label: 'Happy Clients' },
-    { value: '10+', label: 'Technologies' },
-];
 
 const services = [
     { icon: FiCode, title: 'Frontend Dev', description: 'React, Vue, Next.js apps' },
@@ -59,15 +48,6 @@ export default function About() {
                                 open-source projects, or enjoying a good book with a cup of coffee.
                             </p>
                         </div>
-
-                        {/* Skills */}
-                        <div className="flex flex-wrap gap-2">
-                            {skills.map((skill) => (
-                                <span key={skill} className="skill-chip">
-                                    {skill}
-                                </span>
-                            ))}
-                        </div>
                     </motion.div>
 
                     {/* Services Grid */}
@@ -88,32 +68,8 @@ export default function About() {
                     </div>
                 </div>
 
-                {/* Stats */}
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: 0.2 }}
-                    className="mt-16 lg:mt-24"
-                >
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-                        {stats.map((stat, index) => (
-                            <motion.div
-                                key={stat.label}
-                                initial={{ opacity: 0, scale: 0.9 }}
-                                whileInView={{ opacity: 1, scale: 1 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: index * 0.1 }}
-                                className="glass-card p-6 text-center"
-                            >
-                                <div className="text-3xl md:text-4xl font-bold text-gradient mb-2">
-                                    {stat.value}
-                                </div>
-                                <div className="text-sm text-gray-400">{stat.label}</div>
-                            </motion.div>
-                        ))}
-                    </div>
-                </motion.div>
+                {/* Interactive Skills Cloud */}
+                <SkillsCloud />
             </div>
         </section>
     );
