@@ -67,20 +67,13 @@ function SkillBubble({ skill, index, isSelected, onSelect }) {
         y: [0, anim.floatOffset, 0],
         // 2. Micro rotation (±2deg)
         rotate: [0, anim.rotation, 0, -anim.rotation * 0.5, 0],
-        // 3. Subtle glow pulse (boxShadow opacity change)
-        boxShadow: [
-          `0 0 0px ${colors.from}00`,
-          `0 0 20px ${colors.from}30`,
-          `0 0 0px ${colors.from}00`,
-        ],
       }}
       transition={{
         // Default transition for entry
-        delay: Math.min(index * 0.07, 1),
-        duration: 0.5,
+        duration: 0.4,
         type: 'spring',
-        stiffness: 180,
-        damping: 18,
+        stiffness: 200,
+        damping: 20,
         // Property-specific transitions
         y: {
           duration: anim.floatDuration,
@@ -93,13 +86,8 @@ function SkillBubble({ skill, index, isSelected, onSelect }) {
           ease: 'easeInOut',
           delay: anim.glowDelay,
         },
-        boxShadow: {
-          duration: anim.floatDuration * 0.8,
-          repeat: Infinity,
-          ease: 'easeInOut',
-          delay: anim.glowDelay,
-        },
       }}
+      style={{ willChange: 'transform' }}
       whileHover={{
         scale: 1.15,
         boxShadow: `0 0 30px ${colors.from}50, 0 0 60px ${colors.from}20`,
