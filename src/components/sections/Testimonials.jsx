@@ -225,6 +225,7 @@ function FeedbackForm({ onSubmit, isSubmitting }) {
 
   const validate = () => {
     const newErrors = {};
+    if (!name.trim()) newErrors.name = 'Name is required';
     if (email && !validateEmail(email)) newErrors.email = 'Please enter a valid email';
     if (!email.trim()) newErrors.email = 'Email is required';
     if (!message.trim()) newErrors.message = 'Message is required';
@@ -238,7 +239,7 @@ function FeedbackForm({ onSubmit, isSubmitting }) {
     if (!validate() || isSubmitting) return;
 
     const success = await onSubmit({
-      name: name.trim() || 'Anonymous',
+      name: name.trim(),
       email: email.trim(),
       message: message.trim(),
     });
@@ -282,18 +283,29 @@ function FeedbackForm({ onSubmit, isSubmitting }) {
             <div>
               <label htmlFor="feedback-name" className="form-label flex items-center gap-1.5">
                 <FiUser className="w-3.5 h-3.5" />
-                Name <span className="text-gray-600 text-xs">(optional)</span>
+                Name <span className="text-red-400">*</span>
               </label>
               <motion.input
                 id="feedback-name"
                 type="text"
                 value={name}
-                onChange={(e) => setName(e.target.value)}
+                onChange={(e) => { setName(e.target.value); if (errors.name) setErrors(prev => ({ ...prev, name: '' })); }}
                 placeholder="Your name"
-                className="form-input"
+                className={`form-input ${errors.name ? '!border-red-500/50' : ''}`}
                 whileFocus={{ scale: 1.01 }}
                 maxLength={100}
+                required
               />
+              {errors.name && (
+                <motion.p
+                  initial={{ opacity: 0, y: -5 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="text-xs text-red-400 mt-1 flex items-center gap-1"
+                >
+                  <FiAlertCircle className="w-3 h-3" />
+                  {errors.name}
+                </motion.p>
+              )}
             </div>
 
             {/* Email (REQUIRED) */}
