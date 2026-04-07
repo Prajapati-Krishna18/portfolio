@@ -7,7 +7,7 @@ A stunning, fully-responsive portfolio website built with React 18, Vite, and Fr
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.x-06B6D4?style=flat&logo=tailwindcss)
 ![License](https://img.shields.io/badge/License-MIT-green.svg)
 
-> **[Live Demo](https://your-portfolio.vercel.app)** | **[Report Bug](https://github.com/username/portfolio/issues)** | **[Request Feature](https://github.com/username/portfolio/issues)**
+> **[Live Demo](https://portfolio-krishna-prajapati-93.vercel.app/)** | **[Report Bug](https://github.com/username/portfolio/issues)** | **[Request Feature](https://github.com/username/portfolio/issues)**
 
 ---
 
