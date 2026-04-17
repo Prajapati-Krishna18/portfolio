@@ -1,10 +1,12 @@
-import { FiGithub, FiLinkedin, FiTwitter, FiMail, FiHeart } from 'react-icons/fi';
+import { FiGithub, FiLinkedin, FiTwitter, FiYoutube, FiHeart } from 'react-icons/fi';
+import { SiLeetcode } from 'react-icons/si';
 
 const socialLinks = [
+    { icon: SiLeetcode, href: 'https://leetcode.com/u/krishna_prajapati', label: 'LeetCode' }, // TODO: Update URL
     { icon: FiGithub, href: 'https://github.com/Prajapati-Krishna18', label: 'GitHub' },
     { icon: FiLinkedin, href: 'https://www.linkedin.com/in/krishna-prajapati-45ba713ab/', label: 'LinkedIn' },
     { icon: FiTwitter, href: 'https://x.com/KrishnaPra54873', label: 'Twitter' },
-    { icon: FiMail, href: 'krishna.prajapati.rcg@gmail.com', label: 'Email' },
+    { icon: FiYoutube, href: 'https://www.youtube.com/@krishna_cg18', label: 'YouTube' }, // TODO: Update URL
 ];
 
 export default function Footer() {
@@ -21,7 +23,7 @@ export default function Footer() {
                         <span>by Krishna Prajapati</span>
                     </div>
 
-                    {/* Social Links */}
+                    {/* Social Links — ALL 5 */}
                     <div className="flex items-center gap-4">
                         {socialLinks.map((social) => (
                             <a
@@ -31,7 +33,8 @@ export default function Footer() {
                                 rel="noopener noreferrer"
                                 className="social-link"
                                 aria-label={social.label}
-                                >
+                                title={social.label}
+                            >
                                 <social.icon className="w-4 h-4" />
                             </a>
                         ))}

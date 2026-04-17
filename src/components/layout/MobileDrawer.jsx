@@ -1,12 +1,15 @@
 import { useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FiX, FiGithub, FiLinkedin, FiTwitter, FiSun, FiMoon } from 'react-icons/fi';
+import { FiX, FiGithub, FiLinkedin, FiTwitter, FiYoutube, FiSun, FiMoon } from 'react-icons/fi';
+import { SiLeetcode } from 'react-icons/si';
 import { useTheme } from '../../context/ThemeContext';
 
 const socialLinks = [
+  { icon: SiLeetcode, href: 'https://leetcode.com/u/krishna_prajapati', label: 'LeetCode' }, // TODO: Update URL
   { icon: FiGithub, href: 'https://github.com/Prajapati-Krishna18', label: 'GitHub' },
   { icon: FiLinkedin, href: 'https://www.linkedin.com/in/krishna-prajapati-45ba713ab/', label: 'LinkedIn' },
   { icon: FiTwitter, href: 'https://x.com/KrishnaPra54873', label: 'Twitter' },
+  { icon: FiYoutube, href: 'https://youtube.com/@KrishnaPrajapati', label: 'YouTube' }, // TODO: Update URL
 ];
 
 // Animation variants

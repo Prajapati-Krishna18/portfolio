@@ -10,7 +10,7 @@ const certificates = [
         date: 'Feb 2026',
         credentialId: 'Participation',
         link: '/certificates/Hack the Spring .pdf',
-        icon: '🚀',
+        image: '/certificates/Hack the Spring .jpeg',
     },
     {
         title: 'ElectroSphere 2K26 — 2nd Place',
@@ -18,7 +18,7 @@ const certificates = [
         date: 'Jan 2026',
         credentialId: 'Software Edition',
         link: '/certificates/SU 2nd Place Certificate.pdf',
-        icon: '🏆',
+        image: '/certificates/SU 2nd Place Certificate.jpeg',
     },
     {
         title: 'Dev Heat Hackathon — Spring Fiesta',
@@ -26,7 +26,7 @@ const certificates = [
         date: 'Feb 2026',
         credentialId: 'Participation',
         link: '/certificates/Dev Heat IIIT SURAT certificate.pdf',
-        icon: '💻',
+        image: '/certificates/DevHeat Hackathon.png',
     },
     {
         title: 'HackCrux V2.0.0 — Participant',
@@ -34,7 +34,15 @@ const certificates = [
         date: 'Mar 2026',
         credentialId: 'March 14th-15th, 2026 Participation',
         link: '/certificates/LNMIIT_HackCrux.pdf',
-        icon: '💻',
+        image: '/certificates/LNMIIT_HackCrux.png',
+    },
+    {
+        title: 'Odoo x Adani — Certificate of Achievement',
+        issuer: 'Odoo & Adani Group',
+        date: '2026',
+        credentialId: 'Participation & Completion',
+        link: '/certificates/Odoo x Adani certificate.pdf',
+        image: '/certificates/Odoo x Adani.png',
     }
 ];
 
@@ -52,44 +60,59 @@ export default function Certificates() {
                         <div key={cert.title} className="w-full max-w-full">
                             <Card 
                                 delay={index * 0.05} 
-                                className="h-full flex flex-col relative w-full overflow-hidden"
+                                className="h-full flex flex-col relative w-full overflow-hidden p-0"
                             >
-                                {/* Badge (Absolute Positioned) */}
-                                <div className="absolute top-6 right-6 w-10 h-10 rounded-lg bg-gradient-to-br from-primary-500 to-accent-500 flex items-center justify-center shadow-lg z-10">
-                                    <FiAward className="w-5 h-5 text-white" />
+                                {/* Image Preview */}
+                                <div className="aspect-[4/3] w-full bg-dark-900 relative group overflow-hidden border-b border-white/5">
+                                    {cert.image ? (
+                                        <img 
+                                            src={cert.image} 
+                                            alt={cert.title} 
+                                            className="w-full h-full object-contain p-2 bg-black/40 transition-transform duration-500 group-hover:scale-105"
+                                            onError={(e) => {
+                                                e.target.onerror = null; 
+                                                e.target.style.display = 'none';
+                                                e.target.nextSibling.style.display = 'flex';
+                                            }}
+                                        />
+                                    ) : null}
+                                    {/* Fallback if image fails to load */}
+                                    <div className="absolute inset-0 hidden flex-col items-center justify-center bg-gradient-to-br from-primary-500/10 to-accent-500/10" style={{ display: !cert.image ? 'flex' : 'none' }}>
+                                        <FiAward className="w-10 h-10 text-primary-400 mb-2 opacity-50" />
+                                        <p className="text-xs text-gray-500">Image missing (Add .png version)</p>
+                                    </div>
+                                    
+                                    {/* View Overlay on Hover */}
+                                    <a 
+                                        href={cert.link} 
+                                        target="_blank" 
+                                        rel="noopener noreferrer"
+                                        className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity duration-300"
+                                    >
+                                        <span className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur text-white text-sm font-medium border border-white/20">
+                                            <FiExternalLink className="w-4 h-4" />
+                                            View PDF
+                                        </span>
+                                    </a>
                                 </div>
 
-                                {/* Icon */}
-                                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-primary-500/20 to-accent-500/20 flex items-center justify-center text-3xl mb-4 relative z-10">
-                                    {cert.icon}
+                                <div className="p-6 flex flex-col flex-1">
+                                    {/* Title & Issuer */}
+                                    <h3 className="text-lg font-bold text-gray-200 mb-2">
+                                        {cert.title}
+                                    </h3>
+                                    <p className="text-primary-400 font-medium mb-3 text-sm">
+                                        {cert.issuer}
+                                    </p>
+
+                                    {/* Date & ID */}
+                                    <div className="flex flex-wrap items-center gap-2 text-xs text-gray-500 mb-4 mt-auto">
+                                        <FiCalendar className="w-3.5 h-3.5 flex-shrink-0" />
+                                        <span>{cert.date}</span>
+                                        <span className="text-gray-600 hidden sm:inline">•</span>
+                                        <span className="truncate w-full sm:w-auto block mt-1 sm:mt-0">{cert.credentialId}</span>
+                                    </div>
                                 </div>
-
-                                {/* Title & Issuer */}
-                                <h3 className="text-lg font-bold text-gray-200 mb-2 pr-12 relative z-10">
-                                    {cert.title}
-                                </h3>
-                                <p className="text-primary-400 font-medium mb-3 relative z-10">
-                                    {cert.issuer}
-                                </p>
-
-                                {/* Date & ID */}
-                                <div className="flex flex-wrap items-center gap-2 text-sm text-gray-500 mb-4 relative z-10">
-                                    <FiCalendar className="w-4 h-4 flex-shrink-0" />
-                                    <span>{cert.date}</span>
-                                    <span className="text-gray-600 hidden sm:inline">•</span>
-                                    <span className="truncate w-full sm:w-auto block mt-1 sm:mt-0">{cert.credentialId}</span>
-                                </div>
-
-                                {/* View Link */}
-                                <a
-                                    href={cert.link}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="mt-auto inline-flex items-center gap-2 text-sm text-gray-400 hover:text-primary-400 transition-colors pt-4 border-t border-white/5 break-all sm:break-normal w-full relative z-10"
-                                >
-                                    <FiExternalLink className="w-4 h-4 flex-shrink-0" />
-                                    <span className="truncate">View Credential</span>
-                                </a>
                             </Card>
                         </div>
                     ))}

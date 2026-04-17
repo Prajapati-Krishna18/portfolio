@@ -93,6 +93,8 @@ function SkillBubble({ skill, index, isSelected, onSelect }) {
         boxShadow: `0 0 30px ${colors.from}50, 0 0 60px ${colors.from}20`,
       }}
       whileTap={{ scale: 0.95 }}
+      onMouseEnter={() => onSelect(skill.name)}
+      onMouseLeave={() => onSelect(null)}
       onClick={() => onSelect(isSelected ? null : skill.name)}
       className={`
         relative flex flex-col items-center justify-center rounded-full
@@ -264,7 +266,7 @@ export default function SkillsCloud() {
           Skills &amp; Technologies
         </h3>
         <p className="text-gray-400 max-w-lg mx-auto">
-          Technologies I work with — tap any skill to see details
+          Technologies I work with — hover over any skill to see details
         </p>
       </div>
 

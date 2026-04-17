@@ -32,20 +32,20 @@ export default function About() {
                             A passionate developer who loves building things for the web
                         </h3>
 
-                        <div className="space-y-4 text-gray-400 mb-8">
-                            <p>
-                                I&apos;m a full-stack developer based in Gandhinagar (Gujarat), with over 1 years of experience
-                                creating digital experiences. I specialize in building (and occasionally designing)
+                        <div className="space-y-6 text-gray-300 mb-8 max-w-2xl text-lg leading-relaxed">
+                            <p className="hover:translate-x-1 transition-transform duration-500 ease-out">
+                                I&apos;m a <span className="bg-gradient-to-r from-purple-400 to-blue-500 bg-clip-text text-transparent font-semibold">full-stack developer</span> based in Gandhinagar (Gujarat), with over 1 years of experience
+                                creating <span className="bg-gradient-to-r from-purple-400 to-blue-500 bg-clip-text text-transparent font-semibold">digital experiences</span>. I specialize in building (and occasionally designing)
                                 exceptional websites, applications, and everything in between.
                             </p>
-                            <p>
+                            <p className="border-l-2 border-purple-500 pl-4 hover:translate-x-1 transition-transform duration-500 ease-out">
                                 My journey in web development started when I discovered the magic of turning ideas
-                                into interactive experiences. Since then, I&apos;ve had the privilege of working with
+                                into <span className="bg-gradient-to-r from-purple-400 to-blue-500 bg-clip-text text-transparent font-semibold">interactive experiences</span>. Since then, I&apos;ve had the privilege of working with
                                 startups, agencies, and established companies.
                             </p>
-                            <p>
+                            <p className="hover:translate-x-1 transition-transform duration-500 ease-out">
                                 When I&apos;m not coding, you&apos;ll find me exploring new technologies, contributing to
-                                open-source projects, or enjoying a good book with a cup of coffee.
+                                <span className="bg-gradient-to-r from-purple-400 to-blue-500 bg-clip-text text-transparent font-semibold"> open-source projects</span>, or enjoying a good book with a cup of coffee.
                             </p>
                         </div>
                     </motion.div>

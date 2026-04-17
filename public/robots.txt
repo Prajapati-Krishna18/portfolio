@@ -1,0 +1,7 @@
+# robots.txt — Krishna Prajapati Portfolio
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /.env
+
+Sitemap: https://portfolio-krishna-prajapati-93.vercel.app/sitemap.xml
