@@ -11,6 +11,7 @@ const navItems = [
     { label: 'Hackathons', href: '#hackathons' },
     { label: 'Resume', href: '#resume' },
     { label: 'Certificates', href: '#certificates' },
+    { label: 'Testimonials', href: '#testimonials' },
     { label: 'Contact', href: '#contact' },
 ];
 
