@@ -3,8 +3,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { FiDownload, FiCheck, FiAlertCircle } from 'react-icons/fi';
 import { CgSpinner } from 'react-icons/cg';
 
-const RESUME_PATH = '/resume/Krishna_Prajapati_Resume%20(2).pdf';
-const RESUME_FILENAME = 'Krishna_Prajapati_Resume.pdf';
+const RESUME_PATH = '/resume/KRISHNA_PRAJAPATI_Resume.pdf';
+const RESUME_FILENAME = 'KRISHNA_PRAJAPATI_Resume.pdf';
 const DEBOUNCE_MS = 2000;
 
 /**

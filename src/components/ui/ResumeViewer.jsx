@@ -2,7 +2,7 @@ import { useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiX, FiDownload, FiMaximize2 } from 'react-icons/fi';
 
-const RESUME_PATH = '/resume/Krishna_Prajapati_Resume%20(2).pdf';
+const RESUME_PATH = '/resume/KRISHNA_PRAJAPATI_Resume.pdf';
 
 export default function ResumeViewer({ isOpen, onClose }) {
     // Close on Escape
@@ -72,7 +72,7 @@ export default function ResumeViewer({ isOpen, onClose }) {
                                 {/* Download */}
                                 <a
                                     href={RESUME_PATH}
-                                    download="Krishna_Prajapati_Resume.pdf"
+                                    download="KRISHNA_PRAJAPATI_Resume.pdf"
                                     className="p-2 rounded-lg text-gray-400 hover:text-gray-200 hover:bg-white/10 transition-all"
                                     aria-label="Download resume"
                                     title="Download PDF"
