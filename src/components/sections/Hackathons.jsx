@@ -17,6 +17,7 @@ const hackathons = [
         projectImages: [
             '/certificates/SU 2nd Place Certificate.jpeg',
             '/photos/SU with medal.jpeg',
+            '/photos/SU with medal group.jpeg',
             '/photos/SU Team Codepulse Selfie.jpeg', // Placeholder
             '/photos/SU Team CodePulse.jpeg'   // Placeholder
         ],
