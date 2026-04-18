@@ -135,12 +135,14 @@ h6 {
 .section-spacing {
   padding-top: 5rem;
   padding-bottom: 5rem;
+  scroll-margin-top: 5rem;
 }
 
 @media (min-width: 768px) {
   .section-spacing {
     padding-top: 6rem;
     padding-bottom: 6rem;
+    scroll-margin-top: 6rem;
   }
 }
 
@@ -148,18 +150,21 @@ h6 {
   .section-spacing {
     padding-top: 8rem;
     padding-bottom: 8rem;
+    scroll-margin-top: 8rem;
   }
 }
 
 .section-hero {
   padding-top: 8rem;
   padding-bottom: 5rem;
+  scroll-margin-top: 8rem;
 }
 
 @media (min-width: 768px) {
   .section-hero {
     padding-top: 10rem;
     padding-bottom: 6rem;
+    scroll-margin-top: 10rem;
   }
 }
 
@@ -167,6 +172,7 @@ h6 {
   .section-hero {
     padding-top: 12rem;
     padding-bottom: 8rem;
+    scroll-margin-top: 12rem;
   }
 }
 

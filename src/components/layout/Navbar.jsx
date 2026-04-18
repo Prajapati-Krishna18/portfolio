@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { FiMenu, FiSun, FiMoon } from 'react-icons/fi';
 import { useTheme } from '../../context/ThemeContext';
@@ -20,52 +20,50 @@ export default function Navbar() {
     const [scrolled, setScrolled] = useState(false);
     const [activeSection, setActiveSection] = useState('home');
     const { isDark, toggleTheme } = useTheme();
+    const isNavClickRef = useRef(false);
 
     useEffect(() => {
-        // Initial sync on mount
-        const currentHash = window.location.hash.substring(1);
-        if (currentHash) {
-            const sections = navItems.map(item => item.href.substring(1));
-            if (sections.includes(currentHash)) {
-                setActiveSection(currentHash);
-                // Optional: Scroll to the section on load if not already there
-                const el = document.getElementById(currentHash);
-                if (el) setTimeout(() => el.scrollIntoView({ behavior: 'smooth' }), 100);
-            }
-        }
+        const observerOptions = {
+            root: null,
+            rootMargin: '-80px 0px -40% 0px',
+            threshold: 0,
+        };
 
-        const handleScroll = () => {
-            setScrolled(window.scrollY > 50);
-
-            // Check which section is in view
-            const sections = navItems.map(item => item.href.substring(1));
-            let newActiveSection = 'home';
-
-            for (const section of [...sections].reverse()) {
-                const el = document.getElementById(section);
-                if (el) {
-                    const rect = el.getBoundingClientRect();
-                    // If the top of the section is near the middle of the screen
-                    if (rect.top <= 200) {
-                        newActiveSection = section;
-                        break;
-                    }
-                }
-            }
-
-            if (newActiveSection !== activeSection) {
-                setActiveSection(newActiveSection);
-                // Update hash without jumping (replaceState)
-                const newHash = `#${newActiveSection}`;
+        const handleIntersection = (entries) => {
+            const intersectingEntry = entries.find(entry => entry.isIntersecting);
+            
+            if (intersectingEntry && !isNavClickRef.current) {
+                const sectionId = intersectingEntry.target.id;
+                setActiveSection(sectionId);
+                
+                const newHash = `#${sectionId}`;
                 if (window.location.hash !== newHash) {
                     window.history.replaceState(null, '', newHash === '#home' ? window.location.pathname : newHash);
                 }
             }
         };
 
+        const observer = new IntersectionObserver(handleIntersection, observerOptions);
+
+        const sections = navItems.map(item => item.href.substring(1));
+        sections.forEach(section => {
+            const el = document.getElementById(section);
+            if (el) observer.observe(el);
+        });
+
+        const handleScroll = () => {
+            setScrolled(window.scrollY > 50);
+            // Reset nav click flag when scroll is minimal or after some time
+            // Better: reset it when smooth scroll finish is detected (could use a timer)
+        };
+
         window.addEventListener('scroll', handleScroll, { passive: true });
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, [activeSection]);
+
+        return () => {
+            observer.disconnect();
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
 
     const handleNavClick = (e, href) => {
         e.preventDefault();
@@ -73,11 +71,16 @@ export default function Navbar() {
         const element = document.getElementById(sectionId);
         
         if (element) {
-            element.scrollIntoView({ behavior: 'smooth' });
-            
-            // Update hash and active state
+            isNavClickRef.current = true;
             setActiveSection(sectionId);
             window.history.pushState(null, '', href === '#home' ? window.location.pathname : href);
+            
+            element.scrollIntoView({ behavior: 'smooth' });
+
+            // Reset the flag after smooth scroll is likely done
+            setTimeout(() => {
+                isNavClickRef.current = false;
+            }, 1000);
         }
         setIsOpen(false);
     };
