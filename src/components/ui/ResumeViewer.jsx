@@ -92,23 +92,45 @@ export default function ResumeViewer({ isOpen, onClose }) {
                         </div>
 
                         {/* PDF Viewer */}
-                        <div className="flex-1 relative">
+                        <div className="flex-1 relative bg-white/5 overflow-hidden">
                             <iframe
-                                src={`${RESUME_PATH}#toolbar=1&navpanes=0`}
+                                src={`${RESUME_PATH}#toolbar=1&navpanes=0&view=FitH`}
                                 title="Krishna Prajapati Resume"
-                                className="w-full h-full border-0"
-                                style={{ minHeight: '400px' }}
+                                className="w-full h-full border-0 absolute inset-0"
+                                style={{ 
+                                    minHeight: '400px',
+                                    backgroundColor: 'white' 
+                                }}
                             />
-
-                            {/* Fallback message for browsers that can't render PDF */}
-                            <noscript>
-                                <div className="absolute inset-0 flex items-center justify-center bg-dark-900">
-                                    <p className="text-gray-400">
-                                        Unable to display PDF.{' '}
-                                        <a href={RESUME_PATH} className="text-primary-400 underline">Download here</a>.
-                                    </p>
+                            
+                            {/* Overlay message/button for browsers that struggle with PDFs or if it takes too long */}
+                            <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none opacity-0 hover:opacity-100 transition-opacity bg-black/40 backdrop-blur-[2px]">
+                                <div className="pointer-events-auto p-6 text-center">
+                                    <p className="text-gray-300 mb-4">Having trouble viewing the PDF?</p>
+                                    <a 
+                                        href={RESUME_PATH}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="btn-primary inline-flex items-center gap-2"
+                                    >
+                                        <FiMaximize2 className="w-4 h-4" />
+                                        Open Full Resume
+                                    </a>
                                 </div>
-                            </noscript>
+                            </div>
+
+                            {/* Mobile-first fallback: On small screens, direct them to open the PDF since iFrames are tricky */}
+                            <div className="lg:hidden absolute bottom-6 left-1/2 -translate-x-1/2 z-10">
+                                <a 
+                                    href={RESUME_PATH}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="px-6 py-2.5 rounded-full bg-primary-500 text-white font-medium shadow-lg shadow-primary-500/30 flex items-center gap-2 hover:scale-105 transition-transform"
+                                >
+                                    <FiMaximize2 className="w-4 h-4" />
+                                    Open PDF for better view
+                                </a>
+                            </div>
                         </div>
                     </motion.div>
                 </>

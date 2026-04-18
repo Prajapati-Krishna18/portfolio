@@ -22,32 +22,62 @@ export default function Navbar() {
     const { isDark, toggleTheme } = useTheme();
 
     useEffect(() => {
+        // Initial sync on mount
+        const currentHash = window.location.hash.substring(1);
+        if (currentHash) {
+            const sections = navItems.map(item => item.href.substring(1));
+            if (sections.includes(currentHash)) {
+                setActiveSection(currentHash);
+                // Optional: Scroll to the section on load if not already there
+                const el = document.getElementById(currentHash);
+                if (el) setTimeout(() => el.scrollIntoView({ behavior: 'smooth' }), 100);
+            }
+        }
+
         const handleScroll = () => {
             setScrolled(window.scrollY > 50);
 
             // Check which section is in view
             const sections = navItems.map(item => item.href.substring(1));
-            for (const section of sections.reverse()) {
+            let newActiveSection = 'home';
+
+            for (const section of [...sections].reverse()) {
                 const el = document.getElementById(section);
                 if (el) {
                     const rect = el.getBoundingClientRect();
-                    if (rect.top <= 150) {
-                        setActiveSection(section);
+                    // If the top of the section is near the middle of the screen
+                    if (rect.top <= 200) {
+                        newActiveSection = section;
                         break;
                     }
                 }
             }
+
+            if (newActiveSection !== activeSection) {
+                setActiveSection(newActiveSection);
+                // Update hash without jumping (replaceState)
+                const newHash = `#${newActiveSection}`;
+                if (window.location.hash !== newHash) {
+                    window.history.replaceState(null, '', newHash === '#home' ? window.location.pathname : newHash);
+                }
+            }
         };
 
-        window.addEventListener('scroll', handleScroll);
+        window.addEventListener('scroll', handleScroll, { passive: true });
         return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
+    }, [activeSection]);
 
     const handleNavClick = (e, href) => {
         e.preventDefault();
-        const element = document.querySelector(href);
+        const sectionId = href.substring(1);
+        const element = document.getElementById(sectionId);
+        
         if (element) {
             element.scrollIntoView({ behavior: 'smooth' });
+            
+            // Update hash and active state
+            setActiveSection(sectionId);
+            window.history.pushState(null, '', href === '#home' ? window.location.pathname : href);
         }
         setIsOpen(false);
     };
