@@ -1,12 +1,22 @@
 {
   "version": 2,
+  "cleanUrls": true,
+  "trailingSlash": false,
   "rewrites": [
     {
       "source": "/api/(.*)",
       "destination": "/api/index.js"
     },
     {
-      "source": "/((?!api/|resume/|certificates/|photos/|projects/|favicon.ico|.*\\..*).*)",
+      "source": "/resume/(.*)",
+      "destination": "/resume/$1"
+    },
+    {
+      "source": "/certificates/(.*)",
+      "destination": "/certificates/$1"
+    },
+    {
+      "source": "/((?!api/|resume/|certificates/|.*\\..*).*)",
       "destination": "/index.html"
     }
   ]

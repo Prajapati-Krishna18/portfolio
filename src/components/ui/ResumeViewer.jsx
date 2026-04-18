@@ -2,7 +2,7 @@ import { useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiX, FiDownload, FiMaximize2 } from 'react-icons/fi';
 
-const RESUME_PATH = '/resume/KRISHNA_PRAJAPATI_Resume.pdf';
+const RESUME_PATH = '/resume/resume.pdf';
 
 export default function ResumeViewer({ isOpen, onClose }) {
     // Close on Escape
