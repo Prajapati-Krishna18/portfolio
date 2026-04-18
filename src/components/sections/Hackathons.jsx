@@ -16,6 +16,7 @@ const hackathons = [
         githubLink: 'https://github.com/Prajapati-Krishna18/secure-Comm',
         projectImages: [
             '/certificates/SU 2nd Place Certificate.jpeg',
+            '/photos/SU with medal.jpeg',
             '/photos/SU Team Codepulse Selfie.jpeg', // Placeholder
             '/photos/SU Team CodePulse.jpeg'   // Placeholder
         ],
