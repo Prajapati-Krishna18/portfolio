@@ -81,7 +81,7 @@ const projects = [
         category: 'Frontend',
         tags: ['React', 'Formik', 'Yup', 'Tailwind CSS'],
         github: 'https://github.com/Prajapati-Krishna18/professional_form/tree/main', // TODO: Add GitHub link
-        live: '', // TODO: Add live link
+        live: 'https://nebula-form.vercel.app/', // TODO: Add live link
         youtubeDemo: '', // TODO: Add YouTube demo
         featured: false,
     },
