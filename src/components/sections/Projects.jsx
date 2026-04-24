@@ -48,7 +48,7 @@ const projects = [
         category: 'Games',
         tags: ['JavaScript', 'React', 'CSS3'],
         github: 'https://github.com/Prajapati-Krishna18/Tic_Tac_Toe/tree/main', // TODO: Add GitHub link
-        live: '', // TODO: Add live link
+        live: 'https://tic-tac-toe-71.vercel.app/', // TODO: Add live link
         youtubeDemo: '', // TODO: Add YouTube demo
         featured: false,
     },
