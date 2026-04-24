@@ -70,7 +70,7 @@ const projects = [
         category: 'Clones',
         tags: ['HTML', 'CSS'],
         github: 'https://github.com/Prajapati-Krishna18/Clones_Project/tree/main/Nike_clone', // TODO: Add GitHub link
-        live: '', // TODO: Add live link
+        live: 'https://clone-nike-ui.vercel.app/', // TODO: Add live link
         youtubeDemo: '', // TODO: Add YouTube demo
         featured: false,
     },
