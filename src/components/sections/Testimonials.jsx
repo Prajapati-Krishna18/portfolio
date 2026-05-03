@@ -5,6 +5,23 @@ import SectionHeading from '../ui/SectionHeading';
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
+const DEFAULT_TESTIMONIALS = [
+    // {
+    //     _id: 'default-1',
+    //     name: 'Alex Johnson',
+    //     message: 'Krishna is an exceptional developer. His attention to detail and ability to solve complex problems is truly impressive.',
+    //     createdAt: new Date(Date.now() - 172800000).toISOString(), // 2 days ago
+    //     reply: 'Thank you Alex! It was a pleasure working with you on that project.',
+    //     replyDate: new Date(Date.now() - 86400000).toISOString(),
+    // },
+    {
+        _id: 'default-2',
+        name: 'Yug Patel',
+        message: 'The portfolio looks amazing. The animations are smooth and the design is very modern. Great job!',
+        createdAt: new Date(Date.now() - 604800000).toISOString(), // 7 days ago
+    }
+];
+
 // ─── Helpers ────────────────────────────────────────────
 function formatTime(date) {
   const d = new Date(date);
@@ -431,12 +448,17 @@ export default function Testimonials() {
     const fetchFeedback = async () => {
       try {
         const res = await fetch(`${API_URL}/feedback`);
+        if (!res.ok) throw new Error('Network response was not ok');
         const json = await res.json();
-        if (json.success && Array.isArray(json.data)) {
+        if (json.success && Array.isArray(json.data) && json.data.length > 0) {
           setTestimonials(json.data);
+        } else {
+          // Fallback to defaults if no data returned
+          setTestimonials(DEFAULT_TESTIMONIALS);
         }
       } catch (err) {
-        console.error('Failed to fetch feedback:', err);
+        console.warn('Failed to fetch feedback, using defaults:', err);
+        setTestimonials(DEFAULT_TESTIMONIALS);
       } finally {
         setLoading(false);
       }

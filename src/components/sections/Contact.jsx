@@ -57,11 +57,22 @@ export default function Contact() {
 
         setStatus('sending');
 
+        const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+        const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+        const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+        if (!serviceId || !templateId || !publicKey) {
+            console.error('EmailJS configuration missing:', { serviceId, templateId, publicKey });
+            setStatus('error');
+            setTimeout(() => setStatus(null), 4000);
+            return;
+        }
+
         try {
             // Send email via EmailJS (primary — instant email)
             await emailjs.send(
-                import.meta.env.VITE_EMAILJS_SERVICE_ID,
-                import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+                serviceId,
+                templateId,
                 {
                     from_name: formData.name,
                     from_email: formData.email,
@@ -70,21 +81,24 @@ export default function Contact() {
                     reply_to: formData.email,
                     sent_date: new Date().toLocaleString(),
                 },
-                import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+                publicKey
             );
 
             // Also save to MongoDB via backend (secondary — for storage)
-            const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5174/api';
-            const response = await fetch(`${API_URL}/contact`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(formData),
-            });
+            try {
+                const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+                const response = await fetch(`${API_URL}/contact`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData),
+                });
 
-            if (!response.ok) {
-                const errorData = await response.json().catch(() => ({}));
-                console.error('Backend submission failed:', errorData);
-                // We still consider the submission "success" for the user because the email was sent via EmailJS
+                if (!response.ok) {
+                    const errorData = await response.json().catch(() => ({}));
+                    console.error('Backend submission failed:', errorData);
+                }
+            } catch (backendError) {
+                console.warn('Backend storage failed, but email was sent via EmailJS:', backendError);
             }
 
             setStatus('success');
