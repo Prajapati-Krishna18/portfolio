@@ -133,23 +133,10 @@ export default function Hero() {
                         <div className="relative">
                             <div className="w-64 h-64 md:w-80 md:h-80 rounded-full bg-gradient-to-br from-primary-500 to-accent-500 p-1">
                                 <div className="w-full h-full rounded-full bg-dark-900 flex items-center justify-center text-6xl">
-                                    <img src="https://i.postimg.cc/50JwZSMm/professional-edit.jpg" alt="Krishna Prajapati" className='proffesional' />
+                                    <img src="/photos/profile.jpg" alt="Krishna Prajapati" className='proffesional' />
                                 </div>
                             </div>
-                            <motion.div
-                                animate={{ y: [-5, 5, -5] }}
-                                transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-                                className="absolute -bottom-4 -right-4 w-20 h-20 rounded-xl glass flex items-center justify-center text-3xl"
-                            >
-                                ⚡
-                            </motion.div>
-                            <motion.div
-                                animate={{ y: [5, -5, 5] }}
-                                transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut' }}
-                                className="absolute -top-4 -left-4 w-16 h-16 rounded-xl glass flex items-center justify-center text-2xl"
-                            >
-                                🚀
-                            </motion.div>
+
                         </div>
                     </motion.div>
                 </div>
